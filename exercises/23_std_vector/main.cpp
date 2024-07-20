@@ -1,18 +1,18 @@
 ﻿#include "../exercise.h"
 #include <vector>
-
+#include <cstring>
 // READ: std::vector <https://zh.cppreference.com/w/cpp/container/vector>
 
-// TODO: 将下列 `?` 替换为正确的代码
+// TODO: 将下列 ? 替换为正确的代码
 int main(int argc, char **argv) {
     {
         std::vector<int> vec{1, 2, 3, 4, 5};
         ASSERT(vec.size() == 5, "Fill in the correct value.");
-        // THINK: `std::vector` 的大小是什么意思？与什么有关？
+        // THINK: std::vector 的大小是什么意思？与什么有关？
         //ASSERT(sizeof(vec) == 20, "Fill in the correct value.");
         ASSERT(sizeof(vec) == sizeof(std::vector<int>), "Fill in the correct value.");
         int ans[]{1, 2, 3, 4, 5};
-        ASSERT(std::equal(vec.begin(), vec.end(), std::begin(ans)), "Fill in the correct value.");
+        ASSERT(std::memcmp(vec.data(), ans, sizeof(ans)) == 0, "Fill in the correct values.");
     }
     {
         std::vector<double> vec{1, 2, 3, 4, 5};
@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
             ASSERT(vec.size() == 5, "Fill in the correct value.");
             ASSERT(sizeof(vec) == sizeof(std::vector<int>), "Fill in the correct value.");
             double ans[]{1, 2, 3, 4, 5};
-            ASSERT(std::equal(vec.begin(), vec.end(), std::begin(ans)), "Fill in the correct value.");
+            ASSERT(std::memcmp(vec.data(), ans, sizeof(ans)) == 0, "Fill in the correct values.");
         }
         {
             vec.push_back(6);
@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
             ASSERT(vec[4] == 6, "Fill in the correct value.");
         }
         {
-            // THINK: `std::vector` 插入删除的时间复杂度是什么？
+            // THINK: std::vector 插入删除的时间复杂度是什么？
             vec.insert(vec.begin()+1, 1.5);
             ASSERT((vec == std::vector<double>{1, 1.5, 2, 3, 4, 6}), "Make this assertion pass.");
             vec.erase(vec.begin() + 3);
@@ -49,7 +49,7 @@ int main(int argc, char **argv) {
             vec.shrink_to_fit();
             ASSERT(vec.capacity() == 5, "Fill in the correct value.");
             vec.clear();
-            ASSERT(vec.empty(), "`vec` is empty now.");
+            ASSERT(vec.empty(), "vec is empty now.");
             ASSERT(vec.size() == 0, "Fill in the correct value.");
             ASSERT(vec.capacity() == 5, "Fill in the correct value.");
         }
