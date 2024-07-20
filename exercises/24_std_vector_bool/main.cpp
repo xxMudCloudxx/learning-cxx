@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
     ASSERT(vec[0], "Make this assertion pass.");
     ASSERT(vec[99], "Make this assertion pass.");
     ASSERT(vec.size() == 100, "Make this assertion pass.");
-    ASSERT(sizeof(vec) == sizeof(bool*) + 3 * sizeof(size_t), "Fill in the correct value.");
+    ASSERT(sizeof(vec) == sizeof(bool*) + 4 * sizeof(size_t), "Fill in the correct value.");
     // Notice
     {
         vec[20] = false;
