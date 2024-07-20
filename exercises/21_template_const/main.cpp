@@ -11,7 +11,7 @@ struct Tensor {
         unsigned int size = 1;
         // TODO: 填入正确的 shape 并计算 size
         data = new T[size];
-        std::memset(data, 0, size * sizeof(T));
+        std::equal(data, 0, size * sizeof(T));
     }
     ~Tensor() {
         delete[] data;
